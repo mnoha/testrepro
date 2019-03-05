@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  remote_user: root
+  tasks:
+    - name: test connection
+      ping:
+      remote_user: root
+
+    - name: write the apache config file
+      template:
+        src: /root/bigip.license
+        dest: /etc/bigip.license
+    
+    - name: tartednginx
+      service:
+        name:  nginx
+        state: started 
